@@ -10,13 +10,32 @@ import '../pages/wishlist/wishlist-page';
 
 @customElement('app-router')
 export class AppRouter extends LitElement {
+    private getRouteFromUrl(): RouteName {
+        const path = window.location.pathname.replace('/', '');
+
+        const validRoutes: RouteName[] = [
+            'login',
+            'register',
+            'dashboard',
+            'orders',
+            'order-history',
+            'reviews',
+            'wishlist'
+        ];
+
+        return validRoutes.includes(path as RouteName)
+            ? path as RouteName
+            : 'login';
+    }
 
     @state()
-    private currentRoute: RouteName = 'login';
-
+    private currentRoute: RouteName = this.getRouteFromUrl();
+    private handlePopState = () => {
+        this.currentRoute = this.getRouteFromUrl();
+    };
     connectedCallback() {
         super.connectedCallback();
-
+        window.addEventListener('popstate', this.handlePopState);
         window.addEventListener(
             'navigate',
             this.handleNavigation as EventListener
@@ -24,7 +43,7 @@ export class AppRouter extends LitElement {
     }
 
     disconnectedCallback() {
-
+        window.removeEventListener('popstate', this.handlePopState);
         window.removeEventListener(
             'navigate',
             this.handleNavigation as EventListener
