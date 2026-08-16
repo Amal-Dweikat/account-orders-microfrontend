@@ -110,22 +110,43 @@ src/
 │   ├── review-service.ts
 │   └── mock-data.ts
 └── app.ts
+```
 
+## Getting Started
 
-Getting Started
-1. Install dependencies
+### 1. Install dependencies
+
+```bash
 npm install
-2. Run the app locally
+```
+
+### 2. Run the app locally
+
+```bash
 npm run dev
-3. Build for production
+```
+
+### 3. Build for production
+
+```bash
 npm run build
-4. Preview production build
+```
+
+### 4. Preview production build
+
+```bash
 npm run preview
-Available Scripts
+```
+
+## Available Scripts
+
+```bash
 npm run dev       # Start the development server
 npm run build     # Create the production build
 npm run preview   # Preview the production build
-Application Flow
+```
+
+## Application Flow
 
 The application starts with the Login page.
 
@@ -133,14 +154,14 @@ After successful login or registration, the user is taken to the Dashboard.
 
 From the account sidebar, the user can navigate between:
 
-Profile / Dashboard
-Orders
-Wishlist
-Reviews
+- Profile / Dashboard
+- Orders
+- Wishlist
+- Reviews
 
 The pages are handled through the application's custom navigation and routing system.
 
-Microfrontend Integration
+## Microfrontend Integration
 
 This project represents the Account & Orders microfrontend of the ShopModern E-commerce application.
 
@@ -148,25 +169,25 @@ It is designed to run independently and can also be integrated into the main She
 
 The application is deployed separately and can be loaded by the Shell during integration.
 
-Notes
+## Notes
 
 The project currently uses mock data for users, orders, wishlist items, reviews, and dashboard information.
 
 The application was built as an independent microfrontend so that the Account & Orders functionality can be developed and deployed separately from the other parts of the e-commerce application.
 
-Deployment
+## Deployment
 
 The application is deployed using Vercel.
 
-Live Demo:
+**Live Demo:**  
 https://account-orders-microfrontend.vercel.app/
 
 The deployed application can also be used as the Account & Orders microfrontend when integrating the project with the main Shell application.
 
-License
+## License
 
 This project is for educational purposes.
 
-Author
+## Author
 
 Built as the Account & Orders part of the ShopModern E-commerce Microfrontend project using Lit and Material Web.
