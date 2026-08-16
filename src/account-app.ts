@@ -11,7 +11,24 @@ import type {RouteName} from "./events/navigation-events.ts";
 export class AccountApp extends LitElement {
 
     @state()
-    private currentRoute: RouteName = 'login';
+    private currentRoute: RouteName = this.getRouteFromUrl();
+    private getRouteFromUrl(): RouteName {
+        const path = window.location.pathname.replace('/', '');
+
+        const validRoutes: RouteName[] = [
+            'login',
+            'register',
+            'dashboard',
+            'orders',
+            'order-history',
+            'reviews',
+            'wishlist',
+        ];
+
+        return validRoutes.includes(path as RouteName)
+            ? path as RouteName
+            : 'login';
+    }
 
     static styles = css`
 
