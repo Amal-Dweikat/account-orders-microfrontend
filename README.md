@@ -111,6 +111,7 @@ src/
 │   └── mock-data.ts
 └── app.ts
 
+
 Getting Started
 1. Install dependencies
 npm install
