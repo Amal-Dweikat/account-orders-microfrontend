@@ -7,10 +7,11 @@ import '../pages/dashboard/dashboard-page';
 import '../pages/order-history/order-history-page';
 import type { RouteName } from '../events/navigation-events';
 import '../pages/wishlist/wishlist-page';
-
+import { AccountService } from '../services/account-service';
 @customElement('app-router')
 export class AppRouter extends LitElement {
     private getRouteFromUrl(): RouteName {
+
         const path = window.location.pathname.replace('/', '');
 
         const validRoutes: RouteName[] = [
@@ -23,9 +24,18 @@ export class AppRouter extends LitElement {
             'wishlist'
         ];
 
-        return validRoutes.includes(path as RouteName)
+        const route = validRoutes.includes(path as RouteName)
             ? path as RouteName
             : 'login';
+
+        const user = AccountService.getCurrentUser();
+
+
+        if ((route === 'login' || route === 'register') && user) {
+            return 'dashboard';
+        }
+
+        return route;
     }
 
     @state()

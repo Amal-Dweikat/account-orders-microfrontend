@@ -9,6 +9,7 @@ export type RouteName =
 
 export function navigate(route: RouteName) {
 
+
     window.history.pushState({}, '', `/${route}`);
 
 
