@@ -117,18 +117,18 @@ export class AccountSidebar extends LitElement {
                 label: 'Orders',
                 icon: 'shopping_bag'
             },
-            {
-                label: 'Addresses',
-                icon: 'location_on'
-            },
-            {
-                label: 'Payments',
-                icon: 'credit_card'
-            },
-            {
-                label: 'Settings',
-                icon: 'settings'
-            },
+            // {
+            //     label: 'Addresses',
+            //     icon: 'location_on'
+            // },
+            // {
+            //     label: 'Payments',
+            //     icon: 'credit_card'
+            // },
+            // {
+            //     label: 'Settings',
+            //     icon: 'settings'
+            // },
             {
                 label: 'Wishlist',
                 icon: 'favorite'
