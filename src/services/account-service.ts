@@ -6,11 +6,18 @@ export class AccountService {
 
     static login(email: string, password: string): User | null {
 
-        const user = users.find(
-            u => u.email === email && u.password === password
-        );
+        if (!email.trim() || !password.trim()) {
+            return null;
+        }
 
-        return user ?? null;
+        return {
+            id: Date.now(),
+            name: email.split('@')[0],
+            email: email,
+            phone: '',
+            password: password,
+            image: 'https://i.pravatar.cc/150?img=12'
+        };
     }
 
     static logout(): void {
