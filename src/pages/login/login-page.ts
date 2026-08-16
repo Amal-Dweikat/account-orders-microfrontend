@@ -148,7 +148,6 @@ export class LoginPage extends LitElement {
 
         dispatchLogin(user);
 
-        AccountService.saveUser(user);
 
         navigate('dashboard');
     }

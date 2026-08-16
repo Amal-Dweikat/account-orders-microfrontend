@@ -5,7 +5,7 @@ import '../../components/cards/auth-card';
 import '../../components/inputs/text-input';
 import '../../components/inputs/password-input';
 import '../../components/buttons/ primary-button';
-
+import { dispatchLogin } from '../../events/account-events';
 import '@material/web/checkbox/checkbox.js';
 
 import { AccountService } from '../../services/account-service';
@@ -146,6 +146,8 @@ export class RegisterPage extends LitElement {
 
         AccountService.register(user);
         AccountService.saveUser(user);
+
+        dispatchLogin(user);
 
         navigate('dashboard');
     }

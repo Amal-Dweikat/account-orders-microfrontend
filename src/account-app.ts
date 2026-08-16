@@ -4,7 +4,7 @@ import { customElement, state } from 'lit/decorators.js';
 import './router/app-router';
 import './components/navigation/account-sidebar';
 import type {RouteName} from "./events/navigation-events.ts";
-
+import { AccountService } from './services/account-service';
 
 
 @customElement('account-app')
@@ -12,6 +12,7 @@ export class AccountApp extends LitElement {
 
     @state()
     private currentRoute: RouteName = this.getRouteFromUrl();
+
     private getRouteFromUrl(): RouteName {
         const path = window.location.pathname.replace('/', '');
 
@@ -25,9 +26,17 @@ export class AccountApp extends LitElement {
             'wishlist',
         ];
 
-        return validRoutes.includes(path as RouteName)
+        const route = validRoutes.includes(path as RouteName)
             ? path as RouteName
             : 'login';
+
+        const user = AccountService.getCurrentUser();
+
+        if ((route === 'login' || route === 'register') && user) {
+            return 'dashboard';
+        }
+
+        return route;
     }
 
     static styles = css`
@@ -96,7 +105,9 @@ export class AccountApp extends LitElement {
         }
 
     `;
-
+    private handlePopState = () => {
+        this.currentRoute = this.getRouteFromUrl();
+    };
     connectedCallback() {
         super.connectedCallback();
 
@@ -104,13 +115,22 @@ export class AccountApp extends LitElement {
             'navigate',
             this.handleNavigation as EventListener
         );
+
+        window.addEventListener(
+            'popstate',
+            this.handlePopState
+        );
     }
 
     disconnectedCallback() {
-
         window.removeEventListener(
             'navigate',
             this.handleNavigation as EventListener
+        );
+
+        window.removeEventListener(
+            'popstate',
+            this.handlePopState
         );
 
         super.disconnectedCallback();
