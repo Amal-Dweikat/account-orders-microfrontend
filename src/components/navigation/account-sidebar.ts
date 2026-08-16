@@ -3,8 +3,9 @@ import { customElement, property } from 'lit/decorators.js';
 
 import '@material/web/icon/icon.js';
 
-import { navigate } from '../../events/navigation-events';
 
+import { navigate } from '../../events/navigation-events';
+import { AccountService } from '../../services/account-service';
 @customElement('account-sidebar')
 export class AccountSidebar extends LitElement {
 
@@ -98,8 +99,11 @@ export class AccountSidebar extends LitElement {
                 navigate('wishlist');
                 break;
 
+            case 'Logout':
+                AccountService.logout();
+                navigate('login');
+                break;
         }
-
     }
 
     render() {
@@ -128,6 +132,10 @@ export class AccountSidebar extends LitElement {
             {
                 label: 'Wishlist',
                 icon: 'favorite'
+            },
+            {
+                label: 'Logout',
+                icon: 'logout'
             },
         ];
 
